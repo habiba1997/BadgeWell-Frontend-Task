@@ -1,0 +1,66 @@
+.div-toolbar h2 {
+  font-family: "Montserrat", sans-serif;
+  display: inline;
+}
+.nav_bar {
+  font-weight: 700;
+  color: rgb(116, 113, 113);
+  background-color: rgb(255, 255, 255);
+  border-bottom: 2px solid #eee;
+}
+.div-toolbar img {
+  margin-top: auto;
+  width: 17%;
+}
+
+.enter_keyword_div {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10% 0%;
+  color: white;
+  background: rgb(24, 42, 115);
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(24, 42, 115, 1) 0%,
+    rgba(33, 138, 174, 1) 69%,
+    rgba(32, 167, 172, 1) 89%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    color-stop(0%, rgba(24, 42, 115, 1)),
+    color-stop(69%, rgba(33, 138, 174, 1)),
+    color-stop(89%, rgba(32, 167, 172, 1))
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(24, 42, 115, 1) 0%,
+    rgba(33, 138, 174, 1) 69%,
+    rgba(32, 167, 172, 1) 89%
+  );
+  background: -o-linear-gradient(
+    -45deg,
+    rgba(24, 42, 115, 1) 0%,
+    rgba(33, 138, 174, 1) 69%,
+    rgba(32, 167, 172, 1) 89%
+  );
+  background: -ms-linear-gradient(
+    -45deg,
+    rgba(24, 42, 115, 1) 0%,
+    rgba(33, 138, 174, 1) 69%,
+    rgba(32, 167, 172, 1) 89%
+  );
+  background: linear-gradient(
+    135deg,
+    rgba(24, 42, 115, 1) 0%,
+    rgba(33, 138, 174, 1) 69%,
+    rgba(32, 167, 172, 1) 89%
+  );
+}
+
+.enter_keyword_div h1 {
+  font-family: "Playfair Display", serif;
+  margin-bottom: 7vh;
+}
