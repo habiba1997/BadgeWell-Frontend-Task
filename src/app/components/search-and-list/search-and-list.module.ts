@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import { MatCommonModule } from '@angular/material/core';
-import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 import {MatListModule} from '@angular/material/list'; 
-
+import {MatButtonModule} from '@angular/material/button'; 
+import {MatIconModule} from '@angular/material/icon'; 
 
 import { SearchAndListComponent } from './search-and-list.component';
 import { RepoDetailsComponent } from './repo-details/repo-details.component';
 import { NavigationService } from 'src/app/services/navigate/navigation.service';
 import { HTTPGithubSearchService } from 'src/app/services/http-github-search/http-github-search.service';
+import { CommonModule } from '@angular/common';
+import { RepoDetailsEnterGaurd } from 'src/app/gaurds/repo-detail-gaurd';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { StoreModule } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
-import { repositoryReducer } from "../../state/repo.reducer"
-import { RepositoriesEffect } from "../../state/repo.effects";
+
 
 const routes: Routes = [
   {
@@ -32,7 +30,9 @@ const routes: Routes = [
   },
   {
     path: 'repository-details',
-    component: RepoDetailsComponent
+    component: RepoDetailsComponent,
+    canActivate: [RepoDetailsEnterGaurd]
+
   }
 ]
 
@@ -48,20 +48,17 @@ const routes: Routes = [
     MatToolbarModule,
     MatDividerModule,
     MatCommonModule,
-    MatCardModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature("repositories", repositoryReducer),
-    EffectsModule.forFeature([RepositoriesEffect]),
-    HttpClientModule,
-
-
+    FontAwesomeModule
   ],
   providers: [,
     NavigationService,
-    HTTPGithubSearchService
-  ]
-
+    HTTPGithubSearchService,
+    RepoDetailsEnterGaurd
+  ],
 })
 export class SearchAndListModule { }

@@ -8,15 +8,25 @@ export class LoadRepositories implements Action {
   constructor(public payload: string) {}
 }
 
+export class LoadChoosenRepository implements Action {
+  readonly type = RepositoryActionTypes.LOAD_CHOOSEN_REPOSITORY;
+
+  constructor(public payload: Repository) {}
+}
+
 export class LoadRepositoriesSuccess implements Action {
   readonly type = RepositoryActionTypes.LOAD_REPOSITORIES_SUCCESS;
 
-  constructor(public payload: Repository[]) {}
+  constructor(public payload) {}
 }
 
 export class LoadRepositoriesFail implements Action {
   readonly type = RepositoryActionTypes.LOAD_REPOSITORIES_FAIL;
-  constructor(public payload: string) {}
+  constructor(public payload) {}
 }
 
-export type Actions = LoadRepositories |  LoadRepositoriesSuccess | LoadRepositoriesFail
+export type Actions = 
+                    LoadRepositories |  
+                    LoadRepositoriesSuccess | 
+                    LoadRepositoriesFail | 
+                    LoadChoosenRepository

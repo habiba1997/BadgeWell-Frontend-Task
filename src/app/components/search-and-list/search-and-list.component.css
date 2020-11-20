@@ -8,16 +8,50 @@
   background-color: rgb(255, 255, 255);
   border-bottom: 2px solid #eee;
 }
+.link {
+  text-decoration: none;
+  color: black;
+}
+.card {
+  margin: 100vh;
+}
+
 .div-toolbar img {
   margin-top: auto;
   width: 17%;
 }
-
+.card span {
+  margin: 0% 2vh;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.card-header {
+  background-color: #ffffff;
+}
+.avatarImage {
+  border-radius: 50%;
+  border: 5px solid rgba(33, 138, 174);
+  width: 25vh;
+  height: 25vh;
+  margin-bottom: 2vh;
+}
+.error {
+  color: #dc3545;
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
+  margin: 20vh;
+  border: 2px solid #dc3545;
+}
 .enter_keyword_div {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 10% 0%;
+  padding: 5% 0%;
   color: white;
   background: rgb(24, 42, 115);
   background: -moz-linear-gradient(
@@ -62,5 +96,5 @@
 
 .enter_keyword_div h1 {
   font-family: "Playfair Display", serif;
-  margin-bottom: 7vh;
+  margin-bottom: 5vh;
 }

@@ -1,21 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import {
-  StoreRouterConnectingModule,
-  routerReducer,
-  
-} from "@ngrx/router-store";
-import { RepositoriesEffect } from './state/repo.effects';
-import { repositoryReducer } from './state/repo.reducer';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { routerReducer} from "@ngrx/router-store";
+import { repositoryReducer } from "./state/repo.reducer"
+import { RepositoriesEffect } from "./state/repo.effects";
+
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -26,11 +23,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     StoreModule.forRoot({
       router: routerReducer
     }),
-    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
+    StoreModule.forFeature("repositories", repositoryReducer),
+    EffectsModule.forFeature([RepositoriesEffect]),
+    HttpClientModule,
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

@@ -9,28 +9,75 @@
 
 <div class="enter_keyword_div">
     <div class="container">
-        <div class="container">
-            <h1>Github Search</h1>
+        <div>
+            <h1 class="font-weight-bold">Github Search</h1>
             <label>Explore Github repositories by custom keyword</label>
         </div>
         
         <input 
                 type="text" 
-                (keyup)='searchUser($event.target.value)'
+                #keysearch
                 class="form-control" 
-                placeholder="Search or jump to....">
+                placeholder="Search or jump to...."
+                (keyup.enter)="searchUser(keysearch.value)"
+                >
+
+        <button mat-raised-button class="light mt-4" 
+        (click)="searchUser(keysearch.value)">Search</button>
     </div>
 </div>
 
 <mat-divider></mat-divider>
+<mat-spinner *ngIf="loading"></mat-spinner>
 
-        <mat-card class="card"*ngFor="let repo of (repositories$ |async)">
-            <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>{{repo.full_name}}</mat-card-title>
-                  <mat-card-subtitle>{{repo.description}}</mat-card-subtitle>
-            </mat-card-header>
-               
-        </mat-card>
-  
-      
+<h1 class="error" *ngIf="error$ | async" >
+    Error: {{error$ | async}}
+</h1>
+<div *ngIf="loaded && (error$ | async)==null">
+ 
+    <nav class="nav bg-light" >
+
+        <h3 class="nav-link font-weight-bold">
+            <span class="badge badge-info badge-pill">{{total_count$ | async}}</span> Repositories Results
+        </h3>
+        <h3 class="nav-link">
+            <span class="badge badge-info badge-pill">{{count_name$ | async}}</span> By Repository Name 
+        </h3>
+        <h3 class="nav-link">
+            <span class="badge badge-info badge-pill">{{count_user$ | async}} </span> By Users Name
+        </h3>
+        <h3 class="nav-link">
+            <span class="badge badge-info badge-pill">{{count_topic$ | async}} </span> By Topics
+        </h3>
+                      
+    </nav>
+    
+
+    <div class="container-fluid">
+        <div class="row">    
+            <div class="card col-sm-4 mx-auto my-1"
+            *ngFor="let repo of (repositories$ |async)"
+            (click)="chooseRepository(repo)">
+                <div class="text-center">
+                    <h2 class="card-header" >{{repo.name | uppercase}}</h2>
+                    <h3 >{{repo.full_name }}</h3>
+                </div>
+                <div class="center card-body">
+                    <img src="{{repo.owner.avatar_url}}" alt="github image" class="avatarImage" >
+                    <p>{{repo.description}}</p>
+                    <div class="container">
+                        <span class="badge badge-info">Stargazers:{{repo.stargazers_count}}</span>
+                        <span class="badge badge-info">Forks:{{repo.forks_count}}</span>
+                        <span class="badge badge-info">Watchers:{{repo.watchers_count}}</span>
+                    </div>
+                </div>          
+            </div>
+        </div>
+    </div> 
+     
+</div>
+
+
+
+
+

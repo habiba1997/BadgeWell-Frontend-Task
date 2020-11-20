@@ -9,8 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class HTTPGithubSearchService {
       
   
-      Host ="http://api.github.com/";
-       "https://api.github.com/repos/{owner}/{repository_name}"
+      Host ="http://api.github.com";
     
       constructor(
         private http:HttpClient) { 
@@ -26,13 +25,19 @@ export class HTTPGithubSearchService {
   
         getReposByName(repoName:string)
         {
-          let url = this.Host+"search/repositories?q="+repoName;
-
-          return this.http.get<any>(
-          "http://api.github.com/search/repositories?q=localization");
+          let url = this.Host+"/search/repositories?q="+repoName;
+          return this.http.get<any>(url);
         }
         
-     
+        getReposByUser(username:string){
+          let url = this.Host + "/users/"+username+"/repos";
+          return this.http.get<any>(url);
+        }
 
- 
+        getReposByTopic(topic:string){
+          let url = this.Host + "/search/repositories?q=topic:"+topic;
+          return this.http.get<any>(url);
+        }
+
+      
 }

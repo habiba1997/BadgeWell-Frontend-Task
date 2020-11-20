@@ -1,1 +1,56 @@
-<p>repo-details works!</p>
+
+<div class="frame" *ngIf="(repository$ |async) as repository">
+    
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-sm-auto">
+                    <img class="rounded-circle circle" src="{{repository.owner.avatar_url}}">
+            </div>
+           
+            <div class="col-sm-auto repoInfo">
+                <h1 class="headline font-weight-bold">{{repository.full_name}}</h1>
+                <h3 class="headline">Name: {{repository.name}}</h3>  
+                <h3 class="headline">Description: {{repository.description}}</h3>  
+                <h3 class="headline">
+                    Owner: 
+                    <a href="{{repository.owner.html_url}}" >
+                        @github.com/{{repository.owner.login}}
+                    </a>
+                </h3>  
+                <h3 class="headline">
+                    Created: {{repository.created_at |  date:'fullDate' | uppercase}}
+                </h3>  
+                <h3 class="headline">
+                    Url: 
+                    <a href="{{repository.html_url}}">
+                        @github.com/{{repository.full_name}}
+                    </a>
+                </h3>  
+                <div class="row">
+                    <div class="col-sm-auto m-2" >
+                        <mat-icon>aspect_ratio</mat-icon>
+                        Size: {{repository.size}}
+                    </div>
+                    <div class="col-sm-auto m-2">
+                        <mat-icon> <fa-icon [icon]="faCodeBranch"></fa-icon> </mat-icon>
+                        Forks: {{repository.forks_count}}
+                    </div>
+                    <div class="col-sm-auto m-2">
+                        <mat-icon>star_border</mat-icon>
+                        Stargazers: {{repository.stargazers_count}}
+                    </div>
+                    <div class="col-sm-auto m-2">
+                        <mat-icon class="text-info">lens</mat-icon>
+                        Language: {{repository.language}}
+                    </div>
+                </div>
+        </div><!--closure of  row-->
+
+          
+
+
+
+    </div><!--closure of container-->
+    <button class="btn-sm btn-info"(click)="back()">Back</button>
+</div><!--closure of frame-->
+    
